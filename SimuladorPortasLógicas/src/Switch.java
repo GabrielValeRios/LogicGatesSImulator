@@ -1,5 +1,3 @@
-package projeto2Versao2Carlos;
-
 public class Switch {
 	 boolean on;
 	
