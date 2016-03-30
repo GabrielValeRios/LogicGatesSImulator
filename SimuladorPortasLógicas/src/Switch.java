@@ -1,12 +1,28 @@
-public class Switch {
-	 boolean on;
+public class Switch implements Source {
+	boolean estado;
+
 	
-	public void setOn(boolean a){
-		this.on = a;
+	@Override
+	public boolean getOutputValue(int index){
+		return this.estado;
+		
+	
 	}
 	
-	public boolean getOn(){
-		return this.on;
+	
+	public void setOn(){
+		this.estado = true;
 	}
+	
+	public void setOff(){
+		this.estado = false;
+	}
+	
 
 }
+
+		
+	
+	
+	
+		
