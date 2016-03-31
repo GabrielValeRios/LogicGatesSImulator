@@ -11,4 +11,9 @@ public class InputPin{
 		return source;
 	}
 
+	public void setSource(Source source) {
+		this.source = source;
+	}	
+
+
 }
