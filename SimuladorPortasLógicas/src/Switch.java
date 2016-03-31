@@ -18,7 +18,7 @@ public class Switch implements Source {
 		this.estado = false;
 	}
 	
-
+	
 }
 
 		
