@@ -10,13 +10,10 @@ public class Switch implements Source {
 	}
 	
 	
-	public void setOn(){
-		this.estado = true;
-	}
-	
-	public void setOff(){
-		this.estado = false;
-	}
+	public void setOutputValue(boolean a){
+		this.estado = a;
+		
+	} 
 	
 	
 }

@@ -3,8 +3,7 @@ public class PortaAnd extends LogicGate{
 	private InputPin pinA ;
 	private InputPin pinB ;
 	
-	InputPin PinoA = new InputPin();
-	InputPin PinoB = new InputPin();
+
 	
 	
 	public void setPinA(InputPin pinA) {

@@ -11,5 +11,9 @@ public class PortaNot extends LogicGate {
 		
 	}
 
+	public void setPinA(InputPin pinA) {
+		this.pinA = pinA;
+	}
+
 	
 }
