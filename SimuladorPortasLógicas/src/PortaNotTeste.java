@@ -14,7 +14,7 @@ public class PortaNotTeste {
 			InputPin PinoNot = new InputPin();
 						
 			Not.setPinA(PinoNot);
-						
+				
 			
 			gate.setOutputValue(true);
 			
