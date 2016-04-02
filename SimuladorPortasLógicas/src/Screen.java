@@ -20,6 +20,7 @@ public class Screen extends JPanel {
 	
 	public void paintComponent(Graphics g) {
 			
+		g.drawLine(0,0,0,0);
 		g.drawLine(10, 5, 70, 5);
 		g.drawArc(0, 0, 0, 0, 0, 0);
 			
