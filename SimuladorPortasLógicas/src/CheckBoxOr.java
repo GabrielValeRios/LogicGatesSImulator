@@ -5,6 +5,7 @@ import javax.swing.*;
 public class CheckBoxOr  extends JPanel implements ItemListener{
 	JCheckBox aButton;
     JCheckBox bButton;
+    JCheckBox cButton;
     
     StringBuffer choices;
     JLabel pictureLabel;
@@ -20,6 +21,9 @@ public class CheckBoxOr  extends JPanel implements ItemListener{
         bButton = new JCheckBox("B");
         bButton.setMnemonic(KeyEvent.VK_G);
         bButton.setSelected(true);
+        
+        cButton = new JCheckBox("C");
+        cButton.setMnemonic(KeyEvent.VK_H);
  
         //Register a listener for the check boxes.
         aButton.addItemListener(this);
@@ -37,6 +41,7 @@ public class CheckBoxOr  extends JPanel implements ItemListener{
         JPanel checkPanel = new JPanel(new GridLayout(0, 1));
         checkPanel.add(aButton);
         checkPanel.add(bButton);
+        checkPanel.add(cButton);
 
         add(checkPanel, BorderLayout.LINE_START);
         add(pictureLabel, BorderLayout.CENTER);
