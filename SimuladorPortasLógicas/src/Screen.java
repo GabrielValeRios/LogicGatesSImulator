@@ -178,3 +178,24 @@ g.drawLine(80 ,330 ,140 ,330 );
 //perna de baixo
 g.drawLine(80 ,370 ,140 ,370 );
 */
+
+/*
+XOR
+
+//fecha o arco
+g.drawArc(55 ,320 ,100,60,-90,180 );
+g.drawArc(35 ,320 ,100,60,-90,180);
+//arco
+g.drawArc(50,320, 200, 60, -90, 180);
+
+g.drawLine(110 ,320 ,150 ,320 );
+g.drawLine(110 ,380 ,150 ,380 );
+
+//saida
+g.drawLine(250 ,350 ,280 ,350 );
+
+//perna de cima
+g.drawLine(60 ,330 ,140 ,330 );
+//perna de baixo
+g.drawLine(60 ,370 ,140 ,370 );
+*/
