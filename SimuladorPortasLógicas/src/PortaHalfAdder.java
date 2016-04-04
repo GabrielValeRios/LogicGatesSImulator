@@ -4,13 +4,23 @@ public class PortaHalfAdder {
 	private InputPin pinA;
 	private InputPin pinB;
 	
+	
+	
+	public void setPinA(InputPin pinA) {
+		this.pinA = pinA;
+	}
+
+
+	public void setPinB(InputPin pinB) {
+		this.pinB = pinB;
+	}
+
+
 	PortaXor Xor = new PortaXor();
-	InputPin pinoA = new InputPin();
-	InputPin pinoB = new InputPin();
+
 	
 	PortaAnd And = new PortaAnd();
-	InputPin pinoC = new InputPin();
-	InputPin pinoD = new InputPin();
+
 	
 	public boolean[] getOutputValue(int index){
 	    Xor.setPinA(pinA);

@@ -5,6 +5,23 @@ public class PortaFullAdder {
 	InputPin pinB;
 	InputPin pinc;
 	
+	
+	
+	public void setPinA(InputPin pinA) {
+		this.pinA = pinA;
+	}
+
+
+	public void setPinB(InputPin pinB) {
+		this.pinB = pinB;
+	}
+
+
+	public void setPinC(InputPin pinc) {
+		this.pinc = pinc;
+	}
+
+
 	PortaXor Xor1 = new PortaXor();
 	PortaXor Xor2 = new PortaXor();
 	InputPin PinoXor2A = new InputPin();

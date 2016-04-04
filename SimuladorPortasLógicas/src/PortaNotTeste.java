@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class PortaNotTeste {
-	public class PortaAndTeste {
+	
 		@Test
 		public void TestaNot0(){
 			
@@ -46,5 +46,5 @@ public class PortaNotTeste {
 			
 			Assert.assertTrue(saida);
 		}
-	}	
-}
+}	
+
