@@ -11,10 +11,10 @@ public class PortaNotTeste {
 			Switch gate = new Switch();
 			PortaNot Not = new PortaNot();
 			
-			InputPin PinoNot= new InputPin();
+			InputPin PinoNot = new InputPin();
 						
 			Not.setPinA(PinoNot);
-						
+				
 			
 			gate.setOutputValue(true);
 			
