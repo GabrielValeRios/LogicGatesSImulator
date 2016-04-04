@@ -1,4 +1,4 @@
-
+package modelo;
 public class InputPin{
 	
 	int index;

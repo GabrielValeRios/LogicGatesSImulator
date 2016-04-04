@@ -1,4 +1,4 @@
-
+package modelo;
 public class PortaXor extends LogicGate {
 	private InputPin PinA;
 	private InputPin PinB;

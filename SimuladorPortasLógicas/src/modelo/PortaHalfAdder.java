@@ -1,4 +1,4 @@
-
+package modelo;
 public class PortaHalfAdder {
 
 	private InputPin pinA;

@@ -1,3 +1,4 @@
+package modelo;
 public class Switch implements Source {
 	boolean estado;
 

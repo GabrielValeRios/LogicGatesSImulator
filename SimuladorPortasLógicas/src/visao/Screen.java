@@ -1,3 +1,4 @@
+package visao;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -20,20 +21,19 @@ public class Screen extends JPanel {
 	}
 	
 	public void paintComponent(Graphics g) {
-<<<<<<< HEAD
+
 		//fecha o arco
 		g.drawArc(55 ,320 ,100,60,-90,180 );
 		g.drawArc(35 ,320 ,100,60,-90,180);
 		//arco
-		g.drawArc(50,320, 200, 60, -90, 180);
-=======
+
 			
 		g.drawLine(0,0,0,0); // Desenhar linhas
 		g.drawLine(10, 5, 70, 5); // Desenhar arcos
 		g.drawArc(0, 0, 0, 0, 0, 0);
 			
 	    
->>>>>>> origin/master
+
 		
 		g.drawLine(110 ,320 ,150 ,320 );
 		g.drawLine(110 ,380 ,150 ,380 );

@@ -1,4 +1,4 @@
-
+package modelo;
 public class PortaFullAdder {
 
 	InputPin pinA;

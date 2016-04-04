@@ -1,16 +1,16 @@
+package controlador;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-
-public class CheckBoxHalfAdder extends JPanel implements ItemListener{
+public class CheckBoxXor extends JPanel implements ItemListener{
 	JCheckBox aButton;
     JCheckBox bButton;
     
     StringBuffer choices;
     JLabel pictureLabel;
  
-    public CheckBoxHalfAdder() {
+    public CheckBoxXor() {
         super(new BorderLayout());
  
         //Create the check boxes.
@@ -26,7 +26,7 @@ public class CheckBoxHalfAdder extends JPanel implements ItemListener{
         aButton.addItemListener(this);
         bButton.addItemListener(this);
         
-        //Indicates what's on the HalfAdder.
+        //Indicates what's on the xor.
         choices = new StringBuffer("ab");
         
         //Set up the picture label
@@ -73,7 +73,7 @@ public class CheckBoxHalfAdder extends JPanel implements ItemListener{
     protected void updatePicture() {
         //Get the icon corresponding to the image.
         ImageIcon icon = createImageIcon(
-                                    "images/halfAdder/halfAdder-"
+                                    "images/xor/xor-"
                                     + choices.toString()
                                     + ".gif");
         pictureLabel.setIcon(icon);
@@ -84,9 +84,10 @@ public class CheckBoxHalfAdder extends JPanel implements ItemListener{
             pictureLabel.setText(null);
         }
     }
+    
     /** Returns an ImageIcon, or null if the path was invalid. */
     protected static ImageIcon createImageIcon(String path) {
-        java.net.URL imgURL = CheckBoxHalfAdder.class.getResource(path);
+        java.net.URL imgURL = CheckBoxAnd.class.getResource(path);
         if (imgURL != null) {
             return new ImageIcon(imgURL);
         } else {
@@ -102,11 +103,11 @@ public class CheckBoxHalfAdder extends JPanel implements ItemListener{
      */
     private static void createAndShowGUI() {
         //Create and set up the window.
-        JFrame frame = new JFrame("CheckBoxHalfAdder");
+        JFrame frame = new JFrame("CheckBoxXor");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
         //Create and set up the content pane.
-        JComponent newContentPane = new CheckBoxHalfAdder();
+        JComponent newContentPane = new CheckBoxXor();
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
  
@@ -124,5 +125,5 @@ public class CheckBoxHalfAdder extends JPanel implements ItemListener{
             }
         });
     }
-  
+
 }

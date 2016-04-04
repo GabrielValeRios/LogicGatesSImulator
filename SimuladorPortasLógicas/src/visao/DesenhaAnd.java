@@ -1,5 +1,6 @@
-
+package visao;
 public class DesenhaAnd extends JPanel{
+	
 	private static final long serialVersionUID = 1L;
 	private int width;
 	private int height;
@@ -15,10 +16,10 @@ public class DesenhaAnd extends JPanel{
 	public void DesenhAnd(){
 			this.width = 500;
 			this.height = 500;
+	
 	}
-
 			
-			setPreferredSize(new Dimension(width, height))
+		setPreferredSize(new Dimension(width, height));
 		
 		public void paintComponent(Graphics g) {
 				

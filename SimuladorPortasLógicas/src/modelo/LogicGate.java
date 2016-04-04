@@ -1,4 +1,4 @@
-
+package modelo;
 abstract class LogicGate implements Source, Drain{
 
 	

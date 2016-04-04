@@ -1,20 +1,21 @@
+package modelo;
 import static org.junit.Assert.*;
 
 import org.junit.Assert;
 import org.junit.Test;
-public class PortaXorTeste {
+public class PortaOrTeste {
 	
 		@Test
-		public void TestaXor11(){
+		public void TestaOr11(){
 			
 			Switch gate = new Switch();
-			PortaXor Xor = new PortaXor();
+			PortaAnd Or = new PortaAnd();
 			
 			InputPin PinoA = new InputPin();
 			InputPin PinoB = new InputPin();
 			
-			Xor.setPinA(PinoA);
-			Xor.setPinB(PinoB);
+			Or.setPinA(PinoA);
+			Or.setPinB(PinoB);
 				
 			
 			gate.setOutputValue(true);
@@ -23,22 +24,22 @@ public class PortaXorTeste {
 			PinoA.setSource(gate);
 			PinoB.setSource(gate);
 			
-			boolean saida = Xor.getOutputValue(0);
+			boolean saida = Or.getOutputValue(0);
 			
-			Assert.assertFalse(saida);
+			Assert.assertTrue(saida);
 	   }
 
 		@Test
-		public void TestaXor00(){
+		public void TestaOr00(){
 			
 			Switch gate = new Switch();
-			PortaXor Xor = new PortaXor();
+			PortaAnd Or = new PortaAnd();
 			
 			InputPin PinoA = new InputPin();
 			InputPin PinoB = new InputPin();
 			
-			Xor.setPinA(PinoA);
-			Xor.setPinB(PinoB);
+			Or.setPinA(PinoA);
+			Or.setPinB(PinoB);
 				
 			
 			gate.setOutputValue(false);
@@ -47,22 +48,22 @@ public class PortaXorTeste {
 			PinoA.setSource(gate);
 			PinoB.setSource(gate);
 			
-			boolean saida = Xor.getOutputValue(0);
+			boolean saida = Or.getOutputValue(0);
 			
 			Assert.assertFalse(saida);
 	   }
 		@Test
-		public void TestaXor10(){
+		public void TestaOr10(){
 						
 				Switch gate = new Switch();
 				Switch gate2 = new Switch();
-				PortaXor Xor = new PortaXor();
+				PortaOr Or = new PortaOr();
 				
 				InputPin PinoA = new InputPin();
 				InputPin PinoB = new InputPin();
 				
-				Xor.setPinA(PinoA);
-				Xor.setPinB(PinoB);
+				Or.setPinA(PinoA);
+				Or.setPinB(PinoB);
 					
 				
 				gate.setOutputValue(true);
@@ -71,23 +72,23 @@ public class PortaXorTeste {
 				PinoA.setSource(gate);
 				PinoB.setSource(gate2);
 				
-				boolean saida = Xor.getOutputValue(0);
+				boolean saida = Or.getOutputValue(0);
 				
 				Assert.assertTrue(saida);
 		}
 				
 		@Test
-		public void TestaXor01(){
+		public void TestaOr01(){
 						
 				Switch gate = new Switch();
 				Switch gate2 = new Switch();
-				PortaOr Xor = new PortaOr();
+				PortaOr Or = new PortaOr();
 				
 				InputPin PinoA = new InputPin();
 				InputPin PinoB = new InputPin();
 				
-				Xor.setPinA(PinoA);
-				Xor.setPinB(PinoB);
+				Or.setPinA(PinoA);
+				Or.setPinB(PinoB);
 					
 				
 				gate.setOutputValue(false);
@@ -96,7 +97,7 @@ public class PortaXorTeste {
 				PinoA.setSource(gate);
 				PinoB.setSource(gate2);
 				
-				boolean saida = Xor.getOutputValue(0);
+				boolean saida = Or.getOutputValue(0);
 				
 				Assert.assertTrue(saida);
 			}

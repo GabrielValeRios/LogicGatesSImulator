@@ -1,4 +1,4 @@
-
+package modelo;
 public class PortaNot extends LogicGate {
 	private InputPin pinA;
 	

@@ -1,7 +1,8 @@
+package controlador;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
- 
+
 public class CheckBoxFullAdder extends JPanel implements ItemListener{
 	JCheckBox aButton;
     JCheckBox bButton;

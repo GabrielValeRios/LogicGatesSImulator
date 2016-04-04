@@ -1,17 +1,17 @@
+package controlador;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import projeto2Versão7.CheckBoxDemo;
-
-public class CheckBoxAnd  extends JPanel implements ItemListener{
+public class CheckBoxOr  extends JPanel implements ItemListener{
 	JCheckBox aButton;
     JCheckBox bButton;
+    JCheckBox cButton;
     
     StringBuffer choices;
     JLabel pictureLabel;
  
-    public CheckBoxAnd() {
+    public CheckBoxOr() {
         super(new BorderLayout());
  
         //Create the check boxes.
@@ -22,12 +22,15 @@ public class CheckBoxAnd  extends JPanel implements ItemListener{
         bButton = new JCheckBox("B");
         bButton.setMnemonic(KeyEvent.VK_G);
         bButton.setSelected(true);
+        
+        cButton = new JCheckBox("C");
+        cButton.setMnemonic(KeyEvent.VK_H);
  
         //Register a listener for the check boxes.
         aButton.addItemListener(this);
         bButton.addItemListener(this);
         
-        //Indicates what's on the and.
+        //Indicates what's on the or.
         choices = new StringBuffer("ab");
         
         //Set up the picture label
@@ -39,6 +42,7 @@ public class CheckBoxAnd  extends JPanel implements ItemListener{
         JPanel checkPanel = new JPanel(new GridLayout(0, 1));
         checkPanel.add(aButton);
         checkPanel.add(bButton);
+        checkPanel.add(cButton);
 
         add(checkPanel, BorderLayout.LINE_START);
         add(pictureLabel, BorderLayout.CENTER);
@@ -74,7 +78,7 @@ public class CheckBoxAnd  extends JPanel implements ItemListener{
     protected void updatePicture() {
         //Get the icon corresponding to the image.
         ImageIcon icon = createImageIcon(
-                                    "images/and/and-"
+                                    "images/or/or-"
                                     + choices.toString()
                                     + ".gif");
         pictureLabel.setIcon(icon);
@@ -104,11 +108,11 @@ public class CheckBoxAnd  extends JPanel implements ItemListener{
      */
     private static void createAndShowGUI() {
         //Create and set up the window.
-        JFrame frame = new JFrame("CheckBoxAnd");
+        JFrame frame = new JFrame("CheckBoxOr");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
         //Create and set up the content pane.
-        JComponent newContentPane = new CheckBoxAnd();
+        JComponent newContentPane = new CheckBoxOr();
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
  
@@ -126,5 +130,6 @@ public class CheckBoxAnd  extends JPanel implements ItemListener{
             }
         });
     }
-    
+  
+
 }
