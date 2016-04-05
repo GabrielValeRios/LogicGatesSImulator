@@ -1,17 +1,16 @@
-package controlador;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-
-public class CheckBoxHalfAdder extends JPanel implements ItemListener{
+public class CheckBoxOr  extends JPanel implements ItemListener{
 	JCheckBox aButton;
     JCheckBox bButton;
+    JCheckBox lampCheckBox;
     
     StringBuffer choices;
     JLabel pictureLabel;
  
-    public CheckBoxHalfAdder() {
+    public CheckBoxOr() {
         super(new BorderLayout());
  
         //Create the check boxes.
@@ -22,12 +21,16 @@ public class CheckBoxHalfAdder extends JPanel implements ItemListener{
         bButton = new JCheckBox("B");
         bButton.setMnemonic(KeyEvent.VK_G);
         bButton.setSelected(true);
+        
+        lampCheckBox = new JCheckBox("Lamp");
+        lampCheckBox.setMnemonic(KeyEvent.VK_H);
+        lampCheckBox.setEnabled(false);
  
         //Register a listener for the check boxes.
         aButton.addItemListener(this);
         bButton.addItemListener(this);
         
-        //Indicates what's on the HalfAdder.
+        //Indicates what's on the or.
         choices = new StringBuffer("ab");
         
         //Set up the picture label
@@ -39,10 +42,11 @@ public class CheckBoxHalfAdder extends JPanel implements ItemListener{
         JPanel checkPanel = new JPanel(new GridLayout(0, 1));
         checkPanel.add(aButton);
         checkPanel.add(bButton);
+        checkPanel.add(lampCheckBox);
 
         add(checkPanel, BorderLayout.LINE_START);
         add(pictureLabel, BorderLayout.CENTER);
-        setBorder(BorderFactory.createEmptyBorder(60,20,20,20));
+        setBorder(BorderFactory.createEmptyBorder(40,20,20,20));
     }
     
     /** Listens to the check boxes. */
@@ -63,18 +67,33 @@ public class CheckBoxHalfAdder extends JPanel implements ItemListener{
             //whether it was selected or deselected.
             if (e.getStateChange() == ItemEvent.DESELECTED) {
                 c = '-';
+                
+                
             }
             
             //Apply the change to the string.
+            
             choices.setCharAt(index, c);
      
             updatePicture();
+            
+            if(aButton.isSelected()|| bButton.isSelected()){
+            	lampCheckBox.setSelected(true);
+            	
+            }else{
+            	lampCheckBox.setSelected(false);
+            }
+
+
+
+
         }
+    
     
     protected void updatePicture() {
         //Get the icon corresponding to the image.
         ImageIcon icon = createImageIcon(
-                                    "images/halfAdder/halfAdder-"
+                                    "images/or/or-"
                                     + choices.toString()
                                     + ".gif");
         pictureLabel.setIcon(icon);
@@ -85,9 +104,10 @@ public class CheckBoxHalfAdder extends JPanel implements ItemListener{
             pictureLabel.setText(null);
         }
     }
+    
     /** Returns an ImageIcon, or null if the path was invalid. */
     protected static ImageIcon createImageIcon(String path) {
-        java.net.URL imgURL = CheckBoxHalfAdder.class.getResource(path);
+        java.net.URL imgURL = CheckBoxAnd.class.getResource(path);
         if (imgURL != null) {
             return new ImageIcon(imgURL);
         } else {
@@ -103,11 +123,13 @@ public class CheckBoxHalfAdder extends JPanel implements ItemListener{
      */
     private static void createAndShowGUI() {
         //Create and set up the window.
-        JFrame frame = new JFrame("CheckBoxHalfAdder");
+        JFrame frame = new JFrame("CheckBoxOr");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        
  
         //Create and set up the content pane.
-        JComponent newContentPane = new CheckBoxHalfAdder();
+        JComponent newContentPane = new CheckBoxOr();
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
  
@@ -126,4 +148,5 @@ public class CheckBoxHalfAdder extends JPanel implements ItemListener{
         });
     }
   
+
 }

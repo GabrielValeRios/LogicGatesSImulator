@@ -1,30 +1,40 @@
-package controlador;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
 
-public class CheckBoxNot  extends JPanel implements ItemListener{
-	JCheckBox switchButton;
-	
+
+public class CheckBoxAnd  extends JPanel implements ItemListener{
+	JCheckBox aButton;
+    JCheckBox bButton;
+    JCheckBox lampCheckBox;
+    
     StringBuffer choices;
     JLabel pictureLabel;
  
-    public CheckBoxNot() {
+    public CheckBoxAnd() {
         super(new BorderLayout());
  
         //Create the check boxes.
-        switchButton = new JCheckBox("Switch");
-        switchButton.setMnemonic(KeyEvent.VK_C);
-        switchButton.setSelected(true);
-        
-        //Register a listener for the check boxes.
-        switchButton.addItemListener(this);
-        
-        
-        //Indicates what's on the not.
-        choices = new StringBuffer("o");
+        aButton = new JCheckBox("A");
+        aButton.setMnemonic(KeyEvent.VK_C);
+        aButton.setSelected(true);
  
+        bButton = new JCheckBox("B");
+        bButton.setMnemonic(KeyEvent.VK_G);
+        bButton.setSelected(true);
+        
+        lampCheckBox = new JCheckBox("Lamp");
+        lampCheckBox.setMnemonic(KeyEvent.VK_H);
+        lampCheckBox.setEnabled(false);
+ 
+        //Register a listener for the check boxes.
+        aButton.addItemListener(this);
+        bButton.addItemListener(this);
+        
+        //Indicates what's on the and.
+        choices = new StringBuffer("ab");
+        
         //Set up the picture label
         pictureLabel = new JLabel();
         pictureLabel.setFont(pictureLabel.getFont().deriveFont(Font.ITALIC));
@@ -32,8 +42,10 @@ public class CheckBoxNot  extends JPanel implements ItemListener{
         
         //Put the check boxes in a column in a panel
         JPanel checkPanel = new JPanel(new GridLayout(0, 1));
-        checkPanel.add(switchButton);
-        
+        checkPanel.add(aButton);
+        checkPanel.add(bButton);
+        checkPanel.add(lampCheckBox);
+
         add(checkPanel, BorderLayout.LINE_START);
         add(pictureLabel, BorderLayout.CENTER);
         setBorder(BorderFactory.createEmptyBorder(40,20,20,20));
@@ -45,27 +57,45 @@ public class CheckBoxNot  extends JPanel implements ItemListener{
         char c = '-';
         Object source = e.getItemSelectable();
  
-        if (source == switchButton) {
+        if (source == aButton) {
             index = 0;
-            c = 'o';
+            c = 'a';
+        } else if (source == bButton) {
+            index = 1;
+            c = 'b';
         }
-        
-        //Now that we know which button was pushed, find out
-        //whether it was selected or deselected.
-        if (e.getStateChange() == ItemEvent.DESELECTED) {
-            c = '-';
+
+          //Now that we know which button was pushed, find out
+            //whether it was selected or deselected.
+            if (e.getStateChange() == ItemEvent.DESELECTED) {
+                c = '-';
+            }
+            
+            //Apply the change to the string.
+            choices.setCharAt(index, c);
+     
+            updatePicture();
+            
+            choices.setCharAt(index, c);
+            
+            updatePicture();
+            
+            if(aButton.isSelected()== false){
+            		lampCheckBox.setSelected(false);
+            }
+            else if(bButton.isSelected()== false){
+            			lampCheckBox.setSelected(false);
+            	}
+            else{
+            	lampCheckBox.setSelected(true);
+            }
+    
         }
- 
-        //Apply the change to the string.
-        choices.setCharAt(index, c);
- 
-        updatePicture();
-    }
     
     protected void updatePicture() {
         //Get the icon corresponding to the image.
         ImageIcon icon = createImageIcon(
-                                    "images/not/not-"
+                                    "images/and/and-"
                                     + choices.toString()
                                     + ".gif");
         pictureLabel.setIcon(icon);
@@ -79,7 +109,7 @@ public class CheckBoxNot  extends JPanel implements ItemListener{
     
     /** Returns an ImageIcon, or null if the path was invalid. */
     protected static ImageIcon createImageIcon(String path) {
-        java.net.URL imgURL = CheckBoxNot.class.getResource(path);
+        java.net.URL imgURL = CheckBoxAnd.class.getResource(path);
         if (imgURL != null) {
             return new ImageIcon(imgURL);
         } else {
@@ -88,7 +118,6 @@ public class CheckBoxNot  extends JPanel implements ItemListener{
         }
     }
     
-
     /**
      * Create the GUI and show it.  For thread safety,
      * this method should be invoked from the
@@ -96,11 +125,12 @@ public class CheckBoxNot  extends JPanel implements ItemListener{
      */
     private static void createAndShowGUI() {
         //Create and set up the window.
-        JFrame frame = new JFrame("CheckBoxNot");
+        JFrame frame = new JFrame("CheckBoxAnd");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
  
         //Create and set up the content pane.
-        JComponent newContentPane = new CheckBoxNot();
+        JComponent newContentPane = new CheckBoxAnd();
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
  
@@ -108,7 +138,7 @@ public class CheckBoxNot  extends JPanel implements ItemListener{
         frame.pack();
         frame.setVisible(true);
     }
- 
+    
     public static void main(String[] args) {
         //Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI.
@@ -118,6 +148,5 @@ public class CheckBoxNot  extends JPanel implements ItemListener{
             }
         });
     }
- 
-
+    
 }

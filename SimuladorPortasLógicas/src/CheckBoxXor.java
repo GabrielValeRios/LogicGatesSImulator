@@ -1,17 +1,16 @@
-package controlador;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class CheckBoxOr  extends JPanel implements ItemListener{
+public class CheckBoxXor extends JPanel implements ItemListener{
 	JCheckBox aButton;
     JCheckBox bButton;
-    JCheckBox cButton;
+    JCheckBox lampCheckBox;
     
     StringBuffer choices;
     JLabel pictureLabel;
  
-    public CheckBoxOr() {
+    public CheckBoxXor() {
         super(new BorderLayout());
  
         //Create the check boxes.
@@ -23,14 +22,15 @@ public class CheckBoxOr  extends JPanel implements ItemListener{
         bButton.setMnemonic(KeyEvent.VK_G);
         bButton.setSelected(true);
         
-        cButton = new JCheckBox("C");
-        cButton.setMnemonic(KeyEvent.VK_H);
+        lampCheckBox = new JCheckBox("Lamp");
+        lampCheckBox.setMnemonic(KeyEvent.VK_H);
+        lampCheckBox.setEnabled(false);
  
         //Register a listener for the check boxes.
         aButton.addItemListener(this);
         bButton.addItemListener(this);
         
-        //Indicates what's on the or.
+        //Indicates what's on the xor.
         choices = new StringBuffer("ab");
         
         //Set up the picture label
@@ -42,11 +42,11 @@ public class CheckBoxOr  extends JPanel implements ItemListener{
         JPanel checkPanel = new JPanel(new GridLayout(0, 1));
         checkPanel.add(aButton);
         checkPanel.add(bButton);
-        checkPanel.add(cButton);
+        checkPanel.add(lampCheckBox);
 
         add(checkPanel, BorderLayout.LINE_START);
         add(pictureLabel, BorderLayout.CENTER);
-        setBorder(BorderFactory.createEmptyBorder(40,20,20,20));
+        setBorder(BorderFactory.createEmptyBorder(60,20,20,20));
     }
     
     /** Listens to the check boxes. */
@@ -73,12 +73,19 @@ public class CheckBoxOr  extends JPanel implements ItemListener{
             choices.setCharAt(index, c);
      
             updatePicture();
+            
+            if(aButton.isSelected() != bButton.isSelected()){
+            		lampCheckBox.setSelected(true);
+            }else{
+            	lampCheckBox.setSelected(false);
+            }
+        
         }
     
     protected void updatePicture() {
         //Get the icon corresponding to the image.
         ImageIcon icon = createImageIcon(
-                                    "images/or/or-"
+                                    "images/xor/xor-"
                                     + choices.toString()
                                     + ".gif");
         pictureLabel.setIcon(icon);
@@ -108,11 +115,11 @@ public class CheckBoxOr  extends JPanel implements ItemListener{
      */
     private static void createAndShowGUI() {
         //Create and set up the window.
-        JFrame frame = new JFrame("CheckBoxOr");
+        JFrame frame = new JFrame("CheckBoxXor");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
         //Create and set up the content pane.
-        JComponent newContentPane = new CheckBoxOr();
+        JComponent newContentPane = new CheckBoxXor();
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
  
@@ -130,6 +137,5 @@ public class CheckBoxOr  extends JPanel implements ItemListener{
             }
         });
     }
-  
 
 }

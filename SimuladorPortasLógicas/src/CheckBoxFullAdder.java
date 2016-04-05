@@ -1,18 +1,18 @@
-package controlador;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
-import projeto2Versão7.CheckBoxDemo;
-
-public class CheckBoxAnd  extends JPanel implements ItemListener{
+ 
+public class CheckBoxFullAdder extends JPanel implements ItemListener{
 	JCheckBox aButton;
     JCheckBox bButton;
+    JCheckBox cButton;
+    JCheckBox lamp1CheckBox;
+    JCheckBox lamp2CheckBox;
     
     StringBuffer choices;
     JLabel pictureLabel;
  
-    public CheckBoxAnd() {
+    public CheckBoxFullAdder() {
         super(new BorderLayout());
  
         //Create the check boxes.
@@ -23,13 +23,25 @@ public class CheckBoxAnd  extends JPanel implements ItemListener{
         bButton = new JCheckBox("B");
         bButton.setMnemonic(KeyEvent.VK_G);
         bButton.setSelected(true);
- 
+        
+        cButton = new JCheckBox("C");
+        cButton.setMnemonic(KeyEvent.VK_H);
+        cButton.setSelected(true);
+        
+        lamp1CheckBox = new JCheckBox("Lamp1");
+        lamp1CheckBox.setMnemonic(KeyEvent.VK_H);
+        lamp1CheckBox.setEnabled(false);
+        
+        lamp2CheckBox = new JCheckBox("Lamp2");
+        lamp2CheckBox.setMnemonic(KeyEvent.VK_H);
+        lamp2CheckBox.setEnabled(false);
         //Register a listener for the check boxes.
         aButton.addItemListener(this);
         bButton.addItemListener(this);
+        cButton.addItemListener(this);
         
-        //Indicates what's on the and.
-        choices = new StringBuffer("ab");
+        //Indicates what's on the FullAdder.
+        choices = new StringBuffer("abc");
         
         //Set up the picture label
         pictureLabel = new JLabel();
@@ -40,10 +52,13 @@ public class CheckBoxAnd  extends JPanel implements ItemListener{
         JPanel checkPanel = new JPanel(new GridLayout(0, 1));
         checkPanel.add(aButton);
         checkPanel.add(bButton);
+        checkPanel.add(cButton);
+        checkPanel.add(lamp1CheckBox);
+        checkPanel.add(lamp2CheckBox);
 
         add(checkPanel, BorderLayout.LINE_START);
         add(pictureLabel, BorderLayout.CENTER);
-        setBorder(BorderFactory.createEmptyBorder(40,20,20,20));
+        setBorder(BorderFactory.createEmptyBorder(60,20,20,20));
     }
     
     /** Listens to the check boxes. */
@@ -58,24 +73,46 @@ public class CheckBoxAnd  extends JPanel implements ItemListener{
         } else if (source == bButton) {
             index = 1;
             c = 'b';
+        } else if (source == cButton) {
+            index = 2;
+            c = 'c';
         }
 
-          //Now that we know which button was pushed, find out
-            //whether it was selected or deselected.
-            if (e.getStateChange() == ItemEvent.DESELECTED) {
-                c = '-';
-            }
-            
-            //Apply the change to the string.
-            choices.setCharAt(index, c);
-     
-            updatePicture();
-        }
-    
+        //Now that we know which button was pushed, find out
+          //whether it was selected or deselected.
+          if (e.getStateChange() == ItemEvent.DESELECTED) {
+              c = '-';
+          }
+          
+          //Apply the change to the string.
+          choices.setCharAt(index, c);
+          
+          updatePicture();
+          if(aButton.isSelected() == false && bButton.isSelected() == false && cButton.isSelected()== false || 
+        		  aButton.isSelected() == false && bButton.isSelected() == false && cButton.isSelected()== true ||
+        		  aButton.isSelected() == false && bButton.isSelected() == true && cButton.isSelected()== false ||
+        		  aButton.isSelected() == true && bButton.isSelected() == false && cButton.isSelected()== false 
+        		  ){
+      		lamp2CheckBox.setSelected(false);
+      }else{
+      	lamp2CheckBox.setSelected(true);
+      }
+          if(aButton.isSelected() == false && bButton.isSelected() == false && cButton.isSelected()== true || 
+        		  aButton.isSelected() == false && bButton.isSelected() == true && cButton.isSelected()== false ||
+        		  aButton.isSelected() == true && bButton.isSelected() == false && cButton.isSelected()== false ||
+        		  aButton.isSelected() == true && bButton.isSelected() == true && cButton.isSelected()== true 
+        		  ){
+      		lamp1CheckBox.setSelected(true);
+      }else{
+      	lamp1CheckBox.setSelected(false);
+      }
+
+          
+      }
     protected void updatePicture() {
         //Get the icon corresponding to the image.
         ImageIcon icon = createImageIcon(
-                                    "images/and/and-"
+                                    "images/fullAdder/fullAdder-"
                                     + choices.toString()
                                     + ".gif");
         pictureLabel.setIcon(icon);
@@ -86,10 +123,9 @@ public class CheckBoxAnd  extends JPanel implements ItemListener{
             pictureLabel.setText(null);
         }
     }
-    
     /** Returns an ImageIcon, or null if the path was invalid. */
     protected static ImageIcon createImageIcon(String path) {
-        java.net.URL imgURL = CheckBoxAnd.class.getResource(path);
+        java.net.URL imgURL = CheckBoxFullAdder.class.getResource(path);
         if (imgURL != null) {
             return new ImageIcon(imgURL);
         } else {
@@ -105,11 +141,11 @@ public class CheckBoxAnd  extends JPanel implements ItemListener{
      */
     private static void createAndShowGUI() {
         //Create and set up the window.
-        JFrame frame = new JFrame("CheckBoxAnd");
+        JFrame frame = new JFrame("CheckBoxFullAdder");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
         //Create and set up the content pane.
-        JComponent newContentPane = new CheckBoxAnd();
+        JComponent newContentPane = new CheckBoxFullAdder();
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
  
@@ -127,5 +163,5 @@ public class CheckBoxAnd  extends JPanel implements ItemListener{
             }
         });
     }
-    
+  
 }

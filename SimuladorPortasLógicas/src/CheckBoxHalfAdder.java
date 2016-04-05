@@ -1,17 +1,18 @@
-package controlador;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class CheckBoxFullAdder extends JPanel implements ItemListener{
+
+public class CheckBoxHalfAdder extends JPanel implements ItemListener{
 	JCheckBox aButton;
     JCheckBox bButton;
-    JCheckBox cButton;
+    JCheckBox lamp1CheckBox;
+    JCheckBox lamp2CheckBox;
     
     StringBuffer choices;
     JLabel pictureLabel;
  
-    public CheckBoxFullAdder() {
+    public CheckBoxHalfAdder() {
         super(new BorderLayout());
  
         //Create the check boxes.
@@ -23,17 +24,20 @@ public class CheckBoxFullAdder extends JPanel implements ItemListener{
         bButton.setMnemonic(KeyEvent.VK_G);
         bButton.setSelected(true);
         
-        cButton = new JCheckBox("C");
-        cButton.setMnemonic(KeyEvent.VK_H);
-        cButton.setSelected(true);
+        lamp1CheckBox = new JCheckBox("Lamp1");
+        lamp1CheckBox.setMnemonic(KeyEvent.VK_H);
+        lamp1CheckBox.setEnabled(false);
         
+        lamp2CheckBox = new JCheckBox("Lamp2");
+        lamp2CheckBox.setMnemonic(KeyEvent.VK_H);
+        lamp2CheckBox.setEnabled(false);
+ 
         //Register a listener for the check boxes.
         aButton.addItemListener(this);
         bButton.addItemListener(this);
-        cButton.addItemListener(this);
         
-        //Indicates what's on the FullAdder.
-        choices = new StringBuffer("abc");
+        //Indicates what's on the HalfAdder.
+        choices = new StringBuffer("ab");
         
         //Set up the picture label
         pictureLabel = new JLabel();
@@ -44,7 +48,8 @@ public class CheckBoxFullAdder extends JPanel implements ItemListener{
         JPanel checkPanel = new JPanel(new GridLayout(0, 1));
         checkPanel.add(aButton);
         checkPanel.add(bButton);
-        checkPanel.add(cButton);
+        checkPanel.add(lamp1CheckBox);
+        checkPanel.add(lamp2CheckBox);
 
         add(checkPanel, BorderLayout.LINE_START);
         add(pictureLabel, BorderLayout.CENTER);
@@ -63,26 +68,35 @@ public class CheckBoxFullAdder extends JPanel implements ItemListener{
         } else if (source == bButton) {
             index = 1;
             c = 'b';
-        } else if (source == cButton) {
-            index = 2;
-            c = 'c';
         }
 
-        //Now that we know which button was pushed, find out
-          //whether it was selected or deselected.
-          if (e.getStateChange() == ItemEvent.DESELECTED) {
-              c = '-';
-          }
-          
-          //Apply the change to the string.
-          choices.setCharAt(index, c);
-   
-          updatePicture();
-      }
+          //Now that we know which button was pushed, find out
+            //whether it was selected or deselected.
+            if (e.getStateChange() == ItemEvent.DESELECTED) {
+                c = '-';
+            }
+            
+            //Apply the change to the string.
+            choices.setCharAt(index, c);
+     
+            updatePicture();
+            if(aButton.isSelected() != bButton.isSelected()){
+        		lamp1CheckBox.setSelected(true);
+        }else{
+        	lamp1CheckBox.setSelected(false);
+        }
+            if(aButton.isSelected() == true && bButton.isSelected()==true){
+        		lamp2CheckBox.setSelected(true);
+        }else{
+        	lamp2CheckBox.setSelected(false);
+        }
+           
+        }
+    
     protected void updatePicture() {
         //Get the icon corresponding to the image.
         ImageIcon icon = createImageIcon(
-                                    "images/fullAdder/fullAdder-"
+                                    "images/halfAdder/halfAdder-"
                                     + choices.toString()
                                     + ".gif");
         pictureLabel.setIcon(icon);
@@ -95,7 +109,7 @@ public class CheckBoxFullAdder extends JPanel implements ItemListener{
     }
     /** Returns an ImageIcon, or null if the path was invalid. */
     protected static ImageIcon createImageIcon(String path) {
-        java.net.URL imgURL = CheckBoxFullAdder.class.getResource(path);
+        java.net.URL imgURL = CheckBoxHalfAdder.class.getResource(path);
         if (imgURL != null) {
             return new ImageIcon(imgURL);
         } else {
@@ -111,11 +125,11 @@ public class CheckBoxFullAdder extends JPanel implements ItemListener{
      */
     private static void createAndShowGUI() {
         //Create and set up the window.
-        JFrame frame = new JFrame("CheckBoxFullAdder");
+        JFrame frame = new JFrame("CheckBoxHalfAdder");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
         //Create and set up the content pane.
-        JComponent newContentPane = new CheckBoxFullAdder();
+        JComponent newContentPane = new CheckBoxHalfAdder();
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
  
